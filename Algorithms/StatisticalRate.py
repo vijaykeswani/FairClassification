@@ -4,6 +4,7 @@ import scipy.stats as st
 import numpy as np
 import math
 from General import *
+import utils as ut
 
 
 class StatisticalRate(General):
@@ -15,16 +16,16 @@ class StatisticalRate(General):
 		res2 = []
 		for x in samples:
 			temp = np.append(np.append(x, 1), 1)
-			prob_1_1 = getProbability(dist_params, temp)
+			prob_1_1 = ut.getProbability(dist_params, temp)
 
 			temp = np.append(np.append(x, -1), 1)
-			prob_m1_1 = getProbability(dist_params, temp)
+			prob_m1_1 = ut.getProbability(dist_params, temp)
 
 			temp = np.append(np.append(x, 1), 0)
-			prob_1_0 = getProbability(dist_params, temp)
+			prob_1_0 = ut.getProbability(dist_params, temp)
 
 			temp = np.append(np.append(x, -1), 0)
-			prob_m1_0 = getProbability(dist_params, temp)
+			prob_m1_0 = ut.getProbability(dist_params, temp)
 
 
 			prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
@@ -55,18 +56,18 @@ class StatisticalRate(General):
 			l_1, l_2 = params[0], params[1]
 
 			temp = np.append(np.append(x, 1), 1)
-			prob_1_1 = getProbability(dist_params, temp)
+			prob_1_1 = ut.getProbability(dist_params, temp)
 
 			temp = np.append(np.append(x, -1), 1)
-			prob_m1_1 = getProbability(dist_params, temp)
+			prob_m1_1 = ut.getProbability(dist_params, temp)
 
 			temp = np.append(np.append(x, 1), 0)
-			prob_1_0 = getProbability(dist_params, temp)
+			prob_1_0 = ut.getProbability(dist_params, temp)
 
 			temp = np.append(np.append(x, -1), 0)
-			prob_m1_0 = getProbability(dist_params, temp)
+			prob_m1_0 = ut.getProbability(dist_params, temp)
 			if (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) == 0:
-				print("Probability is 0.\n")
+				#print("Probability is 0.\n")
 				return 0
 
 
@@ -142,4 +143,5 @@ class StatisticalRate(General):
 
 if __name__ == '__main__':
 	obj = StatisticalRate()
-	obj.test_adult_data()
+	obj.testPreprocessedData()
+	#obj.testSyntheticData()

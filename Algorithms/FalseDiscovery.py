@@ -4,6 +4,7 @@ import scipy.stats as st
 import numpy as np
 import math
 from General import *
+import utils as ut
 
 
 class FalseDiscovery(General):
@@ -17,16 +18,16 @@ class FalseDiscovery(General):
 		res4 = []
 		for x in samples:
 				temp = np.append(np.append(x, 1), 1)
-				prob_1_1 = getProbability(dist_params, temp)
+				prob_1_1 = ut.getProbability(dist_params, temp)
 
 				temp = np.append(np.append(x, -1), 1)
-				prob_m1_1 = getProbability(dist_params, temp)
+				prob_m1_1 = ut.getProbability(dist_params, temp)
 
 				temp = np.append(np.append(x, 1), 0)
-				prob_1_0 = getProbability(dist_params, temp)
+				prob_1_0 = ut.getProbability(dist_params, temp)
 
 				temp = np.append(np.append(x, -1), 0)
-				prob_m1_0 = getProbability(dist_params, temp)
+				prob_m1_0 = ut.getProbability(dist_params, temp)
 
 
 				prob_y_1 = (prob_1_1 + prob_1_0) / (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1)
@@ -61,16 +62,16 @@ class FalseDiscovery(General):
 				a, b = a[0], b[0]
 
 				temp = np.append(np.append(x, 1), 1)
-				prob_1_1 = getProbability(dist_params, temp)
+				prob_1_1 = ut.getProbability(dist_params, temp)
 
 				temp = np.append(np.append(x, -1), 1)
-				prob_m1_1 = getProbability(dist_params, temp)
+				prob_m1_1 = ut.getProbability(dist_params, temp)
 
 				temp = np.append(np.append(x, 1), 0)
-				prob_1_0 = getProbability(dist_params, temp)
+				prob_1_0 = ut.getProbability(dist_params, temp)
 
 				temp = np.append(np.append(x, -1), 0)
-				prob_m1_0 = getProbability(dist_params, temp)
+				prob_m1_0 = ut.getProbability(dist_params, temp)
 				
 				if (prob_1_1 + prob_1_0 + prob_m1_0 + prob_m1_1) == 0:
 					print("Probability is 0.\n")
@@ -130,7 +131,6 @@ class FalseDiscovery(General):
 				if result == 1 and actual == -1 and x_control_test[j] == 1:
 					pos_1 += 1
 
-
 			pos_0 = float(pos_0)/z1_0
 			pos_1 = float(pos_1)/z1_1
 			if pos_0 == 0 or pos_1 == 0:
@@ -141,4 +141,6 @@ class FalseDiscovery(General):
 
 if __name__ == '__main__':
 	obj = FalseDiscovery()
-	obj.test_adult_data()
+	obj.testPreprocessedData()
+	#obj.testSyntheticData()
+

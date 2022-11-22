@@ -17,7 +17,7 @@ To get a better idea of the algorithm and the constraint functions, we refer the
 
 The algorithms can be run on the pre-processed datasets provided (Adult and Compass). To run any of the above algorithms, simply run the corresponding file with the data folder as the argument : 
 
-        $ python3 FalseDiscovery.py ../Data/data
+        $ cd Algorithms && python3 FalseDiscovery.py ../Data/data
 
 This will run the algorithm for input fairness parameter 0.1, 0.2, ..., 1, and for each case output the accuracy over the test data and the observed fairness values.
 
